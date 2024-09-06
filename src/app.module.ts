@@ -6,6 +6,7 @@ import { ScoreboardModule } from "./scoreboard/scoreboard.module";
 import { UserModule } from "./user/user.module";
 import { ConfigModule } from "@nestjs/config";
 import { AuthService } from "./auth/auth.service";
+import mikroOrmConfig from "./mikro-orm.config";
 
 @Module({
     imports: [
@@ -13,7 +14,7 @@ import { AuthService } from "./auth/auth.service";
             envFilePath: [".env"],
             isGlobal: true,
         }),
-        MikroOrmModule.forRoot(),
+        MikroOrmModule.forRoot(mikroOrmConfig),
         ScoreboardModule,
         UserModule,
     ],
