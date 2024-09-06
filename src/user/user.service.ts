@@ -1,7 +1,7 @@
 import { EntityManager, MikroORM } from "@mikro-orm/core";
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { DomainUserDto } from "./dto/domain-user.dto";
-import { User } from "entities/user.entity";
+import { User } from "../entities/user.entity";
 import { randomUUID, UUID } from "crypto";
 import { CreateUpdateUserDto } from "./dto/create-update-user.dto";
 

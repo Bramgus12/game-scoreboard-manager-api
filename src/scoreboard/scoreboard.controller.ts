@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { ScoreboardService } from "./scoreboard.service";
 import { CreateScoreboardDto } from "./dto/create-scoreboard.dto";
-import { Scoreboard } from "entities/scoreboard.entity";
+import { Scoreboard } from "../entities/scoreboard.entity";
 import { ApiResponse, ApiTags } from "@nestjs/swagger";
 
 @Controller("scoreboard")

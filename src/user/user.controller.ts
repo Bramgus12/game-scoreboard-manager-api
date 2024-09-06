@@ -1,11 +1,11 @@
 import { Body, Controller, Get, NotFoundException, Post, Put, Request } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { RequestWithAuthUser } from "types/requestWithUser";
+import { RequestWithAuthUser } from "../types/requestWithUser";
 import { ApiResponse, ApiSecurity, ApiTags } from "@nestjs/swagger";
 import { CreateUpdateUserDto } from "./dto/create-update-user.dto";
 import { DomainUserDto } from "./dto/domain-user.dto";
 import { UUID } from "crypto";
-import { User } from "entities/user.entity";
+import { User } from "../entities/user.entity";
 
 @Controller("user")
 @ApiSecurity("bearer")

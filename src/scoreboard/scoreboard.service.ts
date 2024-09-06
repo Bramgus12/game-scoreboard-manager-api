@@ -1,7 +1,7 @@
 import { EntityManager, MikroORM } from "@mikro-orm/core";
 import { Injectable } from "@nestjs/common";
 import { CreateScoreboardDto } from "./dto/create-scoreboard.dto";
-import { Scoreboard } from "entities/scoreboard.entity";
+import { Scoreboard } from "../entities/scoreboard.entity";
 import { randomUUID } from "crypto";
 
 @Injectable()
