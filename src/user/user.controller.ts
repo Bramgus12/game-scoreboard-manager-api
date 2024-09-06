@@ -53,7 +53,7 @@ export class UserController {
     @ApiResponse({ status: 200, type: User })
     async updateUser(@Request() req: RequestWithAuthUser, @Body() user: CreateUpdateUserDto) {
         if (req.user == null) {
-            throw new NotFoundException("Auth User not found");
+            throw new NotFoundException("AuthService User not found");
         }
 
         return this.userService.updateUser(req.user.id as UUID, user);

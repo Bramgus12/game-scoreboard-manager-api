@@ -1,14 +1,16 @@
 import { Injectable } from "@nestjs/common";
 import { UserResponse } from "@supabase/supabase-js";
-import { auth } from "auth/auth";
+import { AuthService } from "./auth/auth.service";
 
 @Injectable()
 export class AppService {
+    constructor(private authService: AuthService) {}
+
     getHello(): string {
         return "Hello World!";
     }
 
     getUser(authToken: string): Promise<UserResponse> {
-        return auth.auth.getUser(authToken);
+        return this.authService.supabase.auth.getUser(authToken);
     }
 }

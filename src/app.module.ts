@@ -4,12 +4,20 @@ import { AppService } from "./app.service";
 import { MikroOrmModule } from "@mikro-orm/nestjs";
 import { ScoreboardModule } from "./scoreboard/scoreboard.module";
 import { UserModule } from "user/user.module";
-import { APP_GUARD } from "@nestjs/core";
-import { AuthGuard } from "./auth/auth.guard";
+import { ConfigModule } from "@nestjs/config";
+import { AuthService } from "./auth/auth.service";
 
 @Module({
-    imports: [MikroOrmModule.forRoot(), ScoreboardModule, UserModule],
+    imports: [
+        ConfigModule.forRoot({
+            envFilePath: [".env"],
+            isGlobal: true,
+        }),
+        MikroOrmModule.forRoot(),
+        ScoreboardModule,
+        UserModule,
+    ],
     controllers: [AppController],
-    providers: [AppService],
+    providers: [AppService, AuthService],
 })
 export class AppModule {}

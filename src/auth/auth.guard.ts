@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, NotFoundException, UnauthorizedException } from "@nestjs/common";
 import { Request } from "express";
-import { auth } from "./auth";
+import { AuthService } from "./auth.service";
 import { RequestWithAuthUser } from "types/requestWithUser";
 import { UserService } from "user/user.service";
 import { IS_PUBLIC_KEY } from "./isPublic";
@@ -11,6 +11,7 @@ export class AuthGuard implements CanActivate {
     constructor(
         private readonly userService: UserService,
         private reflector: Reflector,
+        private authService: AuthService,
     ) {}
 
     async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -30,7 +31,7 @@ export class AuthGuard implements CanActivate {
             throw new UnauthorizedException();
         }
 
-        const user = await auth.auth.getUser(token);
+        const user = await this.authService.supabase.auth.getUser(token);
 
         if (user.error) {
             throw new UnauthorizedException();
