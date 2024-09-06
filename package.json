@@ -31,6 +31,10 @@
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.4.0",
     "@supabase/supabase-js": "^2.45.2",
+    "@types/aws-lambda": "^8.10.145",
+    "@types/aws-serverless-express": "^3.3.9",
+    "aws-lambda": "^1.0.7",
+    "aws-serverless-express": "^3.4.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },

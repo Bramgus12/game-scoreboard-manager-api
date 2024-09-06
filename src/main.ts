@@ -1,7 +1,12 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
+import { Handler } from "aws-lambda";
+import { Server } from "http";
+import { createServer, proxy } from "aws-serverless-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import { MikroORM } from "@mikro-orm/core";
+
+let server: Server;
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -20,6 +25,13 @@ async function bootstrap() {
 
     app.enableCors();
 
-    await app.listen(3000);
+    await app.init();
+    server = createServer(app.getHttpAdapter().getInstance());
 }
-void bootstrap();
+
+export const handler: Handler = async (event, context) => {
+    if (server == null) {
+        await bootstrap();
+    }
+    return proxy(server, event, context, "PROMISE").promise;
+};
