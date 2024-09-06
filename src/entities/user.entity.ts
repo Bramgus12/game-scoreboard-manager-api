@@ -1,7 +1,7 @@
 import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
 import { ApiProperty } from "@nestjs/swagger";
 import { UUID } from "crypto";
-import { DomainUserDto } from "user/dto/domain-user.dto";
+import { DomainUserDto } from "../user/dto/domain-user.dto";
 
 @Entity()
 export class User {
