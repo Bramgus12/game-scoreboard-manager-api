@@ -1,30 +1,18 @@
 import { Options } from "@mikro-orm/core";
 import { Migrator } from "@mikro-orm/migrations";
-import { SqliteDriver } from "@mikro-orm/sqlite";
-import fs from "fs";
+import { defineConfig } from "@mikro-orm/postgresql";
 
-// log whatever is in the ./entities directory
-fs.readdirSync(__dirname).forEach((file) => {
-    console.log(file);
-});
+import * as DotEnv from "dotenv";
 
-console.log("--------------------");
+const EnvFilePath: string = `${process.cwd()}/.local.env`;
+DotEnv.config({ path: EnvFilePath });
 
-fs.readdirSync(`${__dirname}/entities`).forEach((file) => {
-    console.log(file);
-});
-
-console.log("--------------------");
-
-console.log(__dirname);
-
-const Config: Options = {
+const config: Options = defineConfig({
     entities: [`${__dirname}/entities`],
     entitiesTs: ["./src/entities"],
-    dbName: "sqlite.db",
-    driver: SqliteDriver,
+    clientUrl: process.env.DATABASE_URL,
     debug: true,
     extensions: [Migrator],
-};
+});
 
-export default Config;
+export default config;

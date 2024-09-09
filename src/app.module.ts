@@ -11,7 +11,7 @@ import mikroOrmConfig from "./mikro-orm.config";
 @Module({
     imports: [
         ConfigModule.forRoot({
-            envFilePath: [".env"],
+            envFilePath: [".local.env", ".env"],
             isGlobal: true,
         }),
         MikroOrmModule.forRoot(mikroOrmConfig),
