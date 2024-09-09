@@ -19,7 +19,7 @@ console.log("--------------------");
 console.log(__dirname);
 
 const Config: Options = {
-    entities: ["./entities"],
+    entities: [`${__dirname}/entities`],
     entitiesTs: ["./src/entities"],
     dbName: "sqlite.db",
     driver: SqliteDriver,
