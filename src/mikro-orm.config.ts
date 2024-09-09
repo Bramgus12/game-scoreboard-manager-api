@@ -3,7 +3,8 @@ import { Migrator } from "@mikro-orm/migrations";
 import { SqliteDriver } from "@mikro-orm/sqlite";
 import fs from "fs";
 
-fs.readdirSync(__dirname).forEach((file) => {
+// log whatever is in the ./entities directory
+fs.readdirSync("./entities").forEach((file) => {
     console.log(file);
 });
 
