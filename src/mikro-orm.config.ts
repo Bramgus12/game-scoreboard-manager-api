@@ -3,7 +3,7 @@ import { Migrator } from "@mikro-orm/migrations";
 import { SqliteDriver } from "@mikro-orm/sqlite";
 
 const Config: Options = {
-    entities: ["./dist/entities"],
+    entities: ["./entities"],
     entitiesTs: ["./src/entities"],
     dbName: "sqlite.db",
     driver: SqliteDriver,
