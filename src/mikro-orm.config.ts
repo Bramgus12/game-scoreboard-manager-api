@@ -10,6 +10,10 @@ DotEnv.config({ path: EnvFilePath });
 const config: Options = defineConfig({
     entities: [`${__dirname}/entities`],
     entitiesTs: ["./src/entities"],
+    migrations: {
+        path: `${__dirname}/migrations`,
+        pathTs: "./src/migrations",
+    },
     clientUrl: process.env.DATABASE_URL,
     debug: true,
     extensions: [Migrator],
