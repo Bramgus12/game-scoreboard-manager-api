@@ -17,9 +17,22 @@ async function bootstrap() {
         .addBearerAuth({ type: "http", scheme: "bearer", name: "Authorization" })
         .build();
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup("swagger", app, document);
+    SwaggerModule.setup("swagger", app, document, {
+        customJs: [
+            "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-bundle.min.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-standalone-preset.min.js",
+        ],
+        customCssUrl: [
+            "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui.min.css",
+            "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui.css",
+        ],
+    });
 
-    await MikroORM.init();
+    const orm = await MikroORM.init();
+
+    const migrator = orm.getMigrator();
+
+    await migrator.up();
 
     app.enableCors();
 

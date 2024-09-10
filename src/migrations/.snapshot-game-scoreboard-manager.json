@@ -1,33 +1,36 @@
 {
-  "namespaces": [],
+  "namespaces": [
+    "public"
+  ],
+  "name": "public",
   "tables": [
     {
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "uuid",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 36,
-          "mappedType": "text"
+          "mappedType": "uuid"
         },
         "scoreboard_name": {
           "name": "scoreboard_name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "text"
+          "length": 255,
+          "mappedType": "string"
         }
       },
       "name": "scoreboard",
+      "schema": "public",
       "indexes": [
         {
-          "keyName": "primary",
+          "keyName": "scoreboard_pkey",
           "columnNames": [
             "id"
           ],
@@ -45,59 +48,59 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "uuid",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 36,
-          "mappedType": "text"
+          "mappedType": "uuid"
         },
         "external_id": {
           "name": "external_id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "text"
+          "length": 255,
+          "mappedType": "string"
         },
         "first_name": {
           "name": "first_name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "text"
+          "length": 255,
+          "mappedType": "string"
         },
         "last_name": {
           "name": "last_name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "text"
+          "length": 255,
+          "mappedType": "string"
         },
         "email": {
           "name": "email",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": null,
-          "mappedType": "text"
+          "length": 255,
+          "mappedType": "string"
         }
       },
       "name": "user",
+      "schema": "public",
       "indexes": [
         {
-          "keyName": "primary",
+          "keyName": "user_pkey",
           "columnNames": [
             "id"
           ],
