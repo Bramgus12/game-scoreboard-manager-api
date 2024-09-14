@@ -40,7 +40,7 @@ export class AuthGuard implements CanActivate {
         const dbUser = await this.userService.getUser(user.data.user.id);
 
         if (dbUser == null && request.path === "/user" && request.method === "POST") {
-            request["user"] = user.data.user;
+            request.authUser = user.data.user;
             return true;
         }
 
@@ -48,7 +48,8 @@ export class AuthGuard implements CanActivate {
             throw new NotFoundException("User not found");
         }
 
-        request["user"] = user.data.user;
+        request.authUser = user.data.user;
+        request.user = dbUser;
 
         return true;
     }

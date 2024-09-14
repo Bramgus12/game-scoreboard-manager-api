@@ -15,35 +15,29 @@ export class UserController {
 
     @Get("/")
     @ApiResponse({ status: 200, type: User })
-    async getUser(@Request() req: RequestWithAuthUser): Promise<User> {
+    getUser(@Request() req: RequestWithAuthUser): User {
         if (req.user == null) {
             throw new NotFoundException("User not found");
         }
 
-        const user = await this.userService.getUser(req.user.id as UUID);
-
-        if (user == null) {
-            throw new NotFoundException("User not found");
-        }
-
-        return user;
+        return req.user;
     }
 
     @Post("/")
     @ApiResponse({ status: 201, type: User })
     createUser(@Request() req: RequestWithAuthUser, @Body() user: CreateUpdateUserDto) {
-        if (req.user == null) {
+        if (req.authUser == null) {
             throw new NotFoundException("User not found");
         }
 
-        if (req.user.email == null) {
+        if (req.authUser.email == null) {
             throw new NotFoundException("No email found inside of auth user object");
         }
 
         const noIdUser: DomainUserDto = {
             ...user,
-            email: req.user.email,
-            externalId: req.user.id as UUID,
+            email: req.authUser.email,
+            externalId: req.authUser.id as UUID,
         };
 
         return this.userService.createUser(noIdUser);
@@ -56,6 +50,6 @@ export class UserController {
             throw new NotFoundException("AuthService User not found");
         }
 
-        return this.userService.updateUser(req.user.id as UUID, user);
+        return this.userService.updateUser(req.user.externalId, user);
     }
 }

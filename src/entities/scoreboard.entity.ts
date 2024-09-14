@@ -1,14 +1,15 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, ManyToOne, Property } from "@mikro-orm/core";
 import { ApiProperty } from "@nestjs/swagger";
-import { UUID } from "crypto";
+import { BaseEntity } from "./base.entity";
+import { User } from "./user.entity";
 
 @Entity()
-export class Scoreboard {
-    @PrimaryKey({ type: "uuid" })
-    @ApiProperty()
-    id!: UUID;
-
+export class Scoreboard extends BaseEntity {
     @Property()
     @ApiProperty()
     scoreboardName!: string;
+
+    @ManyToOne()
+    @ApiProperty({ type: "string", format: "uuid" })
+    user!: User;
 }

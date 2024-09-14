@@ -17,7 +17,12 @@ export class UserService {
     }
 
     async createUser(user: DomainUserDto) {
-        const newUser = new User(user, randomUUID());
+        const newUser = new User();
+        newUser.email = user.email;
+        newUser.firstName = user.firstName;
+        newUser.lastName = user.lastName;
+        newUser.externalId = user.externalId;
+        newUser.id = randomUUID();
 
         const createdUser = this.em.create<User>(User, newUser);
         await this.em.persistAndFlush(createdUser);

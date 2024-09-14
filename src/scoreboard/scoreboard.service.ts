@@ -3,6 +3,7 @@ import { Injectable } from "@nestjs/common";
 import { CreateScoreboardDto } from "./dto/create-scoreboard.dto";
 import { Scoreboard } from "../entities/scoreboard.entity";
 import { randomUUID } from "crypto";
+import { User } from "../entities/user.entity";
 
 @Injectable()
 export class ScoreboardService {
@@ -11,11 +12,11 @@ export class ScoreboardService {
         private readonly em: EntityManager,
     ) {}
 
-    createScoreboard(scoreboard: CreateScoreboardDto): Scoreboard {
-        const newScoreboard: Scoreboard = {
-            scoreboardName: scoreboard.scoreboardName,
-            id: randomUUID(),
-        };
+    createScoreboard(scoreboard: CreateScoreboardDto, user: User): Scoreboard {
+        const newScoreboard = new Scoreboard();
+        newScoreboard.scoreboardName = scoreboard.scoreboardName;
+        newScoreboard.user = user;
+        newScoreboard.id = randomUUID();
 
         const createdScoreboard = this.em.create<Scoreboard>("Scoreboard", newScoreboard);
         void this.em.persistAndFlush(createdScoreboard);

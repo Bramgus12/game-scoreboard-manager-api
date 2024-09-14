@@ -1,23 +1,11 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
+import { Entity, Property } from "@mikro-orm/core";
 import { ApiProperty } from "@nestjs/swagger";
 import { UUID } from "crypto";
-import { DomainUserDto } from "../user/dto/domain-user.dto";
+import { BaseEntity } from "./base.entity";
 
 @Entity()
-export class User {
-    constructor(user: DomainUserDto, id: UUID) {
-        this.id = id;
-        this.externalId = user.externalId;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.email = user.email;
-    }
-
-    @PrimaryKey({ type: "uuid" })
-    @ApiProperty()
-    id!: UUID;
-
-    @ApiProperty()
+export class User extends BaseEntity {
+    @ApiProperty({ type: "string", format: "uuid" })
     @Property()
     externalId!: UUID;
 
@@ -29,7 +17,7 @@ export class User {
     @Property()
     lastName!: string;
 
-    @ApiProperty()
+    @ApiProperty({ type: "string", format: "email" })
     @Property()
     email!: string;
 }

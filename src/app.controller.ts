@@ -9,9 +9,9 @@ export class AppController {
     constructor(private readonly appService: AppService) {}
 
     @Get()
-    @HttpCode(204)
+    @HttpCode(200)
     @Public()
-    getHealth(): void {
-        return;
+    getHealth(): string {
+        return "This app is very healthy! 🥦🥬";
     }
 }
