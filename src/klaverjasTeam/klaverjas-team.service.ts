@@ -1,6 +1,6 @@
 import { EntityManager, MikroORM } from "@mikro-orm/core";
 import { Injectable } from "@nestjs/common";
-import { UUID } from "crypto";
+import { randomUUID, UUID } from "crypto";
 import { Scoreboard } from "../entities/scoreboard.entity";
 import { KlaverjasTeam } from "../entities/klaverjas-team.entity";
 import { UpdateKlaverjasTeam } from "./dto/update-klaverjas-team.dto";
@@ -42,6 +42,7 @@ export class KlaverjasTeamService {
                 const newKlaverjasTeam = new KlaverjasTeam();
                 newKlaverjasTeam.type = klaverjasTeam.type;
                 newKlaverjasTeam.name = klaverjasTeam.name;
+                newKlaverjasTeam.id = randomUUID();
                 newKlaverjasTeam.scoreboard = scoreboard;
 
                 const createdKlaverjasTeam = this.em.create<KlaverjasTeam>(
