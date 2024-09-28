@@ -16,6 +16,7 @@ export class ScoreboardService {
     createScoreboard(scoreboard: CreateScoreboardDto, user: User): Scoreboard {
         const newScoreboard = new Scoreboard();
         newScoreboard.scoreboardName = scoreboard.scoreboardName;
+        newScoreboard.gameType = scoreboard.gameType;
         newScoreboard.user = user;
         newScoreboard.id = randomUUID();
 
