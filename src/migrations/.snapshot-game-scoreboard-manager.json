@@ -354,6 +354,15 @@
           "nullable": false,
           "mappedType": "boolean"
         },
+        "is_going": {
+          "name": "is_going",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "boolean"
+        },
         "klaverjas_team_id": {
           "name": "klaverjas_team_id",
           "type": "uuid",

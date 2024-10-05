@@ -19,4 +19,7 @@ export class UpdateKlaverjasRound {
 
     @ApiProperty()
     isWet: boolean;
+
+    @ApiProperty()
+    isGoing: boolean;
 }

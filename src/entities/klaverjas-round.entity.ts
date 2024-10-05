@@ -25,6 +25,10 @@ export class KlaverjasRound extends BaseEntity {
     @ApiProperty()
     isWet: boolean;
 
+    @Property()
+    @ApiProperty()
+    isGoing: boolean;
+
     @ManyToOne()
     @ApiProperty({ type: "string", format: "uuid" })
     klaverjasTeam: KlaverjasTeam;
