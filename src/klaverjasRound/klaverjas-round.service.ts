@@ -57,6 +57,7 @@ export class KlaverjasRoundService {
         newKlaverjasRound.fame = klaverjasRound.fame;
         newKlaverjasRound.isPit = klaverjasRound.isPit;
         newKlaverjasRound.isWet = klaverjasRound.isWet;
+        newKlaverjasRound.isGoing = klaverjasRound.isGoing;
         newKlaverjasRound.klaverjasTeam = team;
 
         const createdKlaverjasRound = this.em.create<KlaverjasRound>(
@@ -96,6 +97,7 @@ export class KlaverjasRoundService {
         updatedKlaverjasRound.fame = klaverjasRound.fame;
         updatedKlaverjasRound.isPit = klaverjasRound.isPit;
         updatedKlaverjasRound.isWet = klaverjasRound.isWet;
+        updatedKlaverjasRound.isGoing = klaverjasRound.isGoing;
 
         void this.em.persistAndFlush(updatedKlaverjasRound);
 
