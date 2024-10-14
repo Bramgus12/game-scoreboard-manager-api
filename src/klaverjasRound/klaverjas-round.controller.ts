@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     NotFoundException,
     Param,
@@ -93,6 +94,29 @@ export class KlaverjasRoundController {
             req.user.id,
             klaverjasRoundId,
             klaverjasRound,
+        );
+    }
+
+    @Delete(":klaverjasRoundId")
+    @ApiResponse({
+        status: 204,
+        description: "The record has been successfully deleted.",
+    })
+    deleteKlaverjasRound(
+        @Request() req: RequestWithAuthUser,
+        @Param("scoreboardId") scoreboardId: UUID,
+        @Param("klaverjasTeamId") klaverjasTeamId: UUID,
+        @Param("klaverjasRoundId") klaverjasRoundId: UUID,
+    ) {
+        if (req.user == null) {
+            throw new NotFoundException("User not found");
+        }
+
+        void this.klaverjasRoundService.deleteKlaverjasRound(
+            scoreboardId,
+            klaverjasTeamId,
+            req.user.id,
+            klaverjasRoundId,
         );
     }
 }

@@ -103,4 +103,28 @@ export class KlaverjasRoundService {
 
         return updatedKlaverjasRound;
     }
+
+    async deleteKlaverjasRound(
+        scoreboardId: UUID,
+        teamId: UUID,
+        userId: UUID,
+        klaverjasRoundId: UUID,
+    ) {
+        const scoreboard = await this.em.findOneOrFail<Scoreboard>("Scoreboard", {
+            id: scoreboardId,
+            user: userId,
+        });
+
+        const team = await this.em.findOneOrFail<KlaverjasTeam>("KlaverjasTeam", {
+            id: teamId,
+            scoreboard: scoreboard.id,
+        });
+
+        const klaverjasRound = await this.em.findOneOrFail<KlaverjasRound>(
+            "KlaverjasRound",
+            { id: klaverjasRoundId, klaverjasTeam: team.id },
+        );
+
+        void this.em.removeAndFlush(klaverjasRound);
+    }
 }
