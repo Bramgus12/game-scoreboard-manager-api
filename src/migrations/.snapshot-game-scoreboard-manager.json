@@ -35,6 +35,83 @@
           "length": 6,
           "mappedType": "datetime"
         },
+        "round_number": {
+          "name": "round_number",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "guess": {
+          "name": "guess",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "is_correct": {
+          "name": "is_correct",
+          "type": "boolean",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "boolean"
+        }
+      },
+      "name": "boerenbridge_round",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "boerenbridge_round_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
         "external_id": {
           "name": "external_id",
           "type": "varchar(255)",
@@ -399,6 +476,245 @@
             "id"
           ],
           "referencedTableName": "public.klaverjas_team",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "current_round": {
+          "name": "current_round",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "points_per_correct_guess": {
+          "name": "points_per_correct_guess",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "scoreboard_id": {
+          "name": "scoreboard_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "boerenbridge_game",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "boerenbridge_game_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "boerenbridge_game_scoreboard_id_foreign": {
+          "constraintName": "boerenbridge_game_scoreboard_id_foreign",
+          "columnNames": [
+            "scoreboard_id"
+          ],
+          "localTableName": "public.boerenbridge_game",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.scoreboard",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamptz",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 6,
+          "mappedType": "datetime"
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 255,
+          "mappedType": "string"
+        },
+        "game_id": {
+          "name": "game_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "boerenbridge_player",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "boerenbridge_player_pkey",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "boerenbridge_player_game_id_foreign": {
+          "constraintName": "boerenbridge_player_game_id_foreign",
+          "columnNames": [
+            "game_id"
+          ],
+          "localTableName": "public.boerenbridge_player",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.boerenbridge_game",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "boerenbridge_player_id": {
+          "name": "boerenbridge_player_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        },
+        "boerenbridge_round_id": {
+          "name": "boerenbridge_round_id",
+          "type": "uuid",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "uuid"
+        }
+      },
+      "name": "boerenbridge_player_rounds",
+      "schema": "public",
+      "indexes": [
+        {
+          "keyName": "boerenbridge_player_rounds_pkey",
+          "columnNames": [
+            "boerenbridge_player_id",
+            "boerenbridge_round_id"
+          ],
+          "composite": true,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "boerenbridge_player_rounds_boerenbridge_player_id_foreign": {
+          "constraintName": "boerenbridge_player_rounds_boerenbridge_player_id_foreign",
+          "columnNames": [
+            "boerenbridge_player_id"
+          ],
+          "localTableName": "public.boerenbridge_player_rounds",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.boerenbridge_player",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "boerenbridge_player_rounds_boerenbridge_round_id_foreign": {
+          "constraintName": "boerenbridge_player_rounds_boerenbridge_round_id_foreign",
+          "columnNames": [
+            "boerenbridge_round_id"
+          ],
+          "localTableName": "public.boerenbridge_player_rounds",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.boerenbridge_round",
+          "deleteRule": "cascade",
           "updateRule": "cascade"
         }
       },
