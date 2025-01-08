@@ -9,6 +9,7 @@ import { AuthService } from "./auth/auth.service";
 import mikroOrmConfig from "./mikro-orm.config";
 import { KlaverjasTeamModule } from "./klaverjasTeam/klaverjas-team.module";
 import { KlaverjasRoundModule } from "./klaverjasRound/klaverjas-round.module";
+import { BoerenbridgeGameModule } from "./boerenbridgeGame/boerenbridge-game.module";
 
 @Module({
     imports: [
@@ -21,6 +22,7 @@ import { KlaverjasRoundModule } from "./klaverjasRound/klaverjas-round.module";
         KlaverjasTeamModule,
         KlaverjasRoundModule,
         UserModule,
+        BoerenbridgeGameModule,
     ],
     controllers: [AppController],
     providers: [AppService, AuthService],

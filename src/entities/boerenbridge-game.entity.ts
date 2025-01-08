@@ -14,6 +14,6 @@ export class BoerenbridgeGame extends BaseEntity {
     pointsPerCorrectGuess: number;
 
     @ManyToOne()
-    @ApiProperty()
+    @ApiProperty({ type: "string", format: "uuid" })
     scoreboard: Scoreboard;
 }

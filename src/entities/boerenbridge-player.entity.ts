@@ -7,8 +7,8 @@ import {
 } from "@mikro-orm/core";
 import { BaseEntity } from "./base.entity";
 import { ApiProperty } from "@nestjs/swagger";
-import { BoerenbridgeGame } from "./boerenbridge-game";
-import { BoerenbridgeRound } from "./boerenbridge-round";
+import { BoerenbridgeGame } from "./boerenbridge-game.entity";
+import { BoerenbridgeRound } from "./boerenbridge-round.entity";
 
 @Entity()
 export class BoerenbridgePlayer extends BaseEntity {
