@@ -21,6 +21,6 @@ export class BoerenbridgePlayer extends BaseEntity {
     game: BoerenbridgeGame;
 
     @ManyToMany({ entity: () => BoerenbridgeRound })
-    @ApiProperty()
+    @ApiProperty({ type: () => [BoerenbridgeRound] })
     rounds = new Collection<BoerenbridgeRound>(this);
 }

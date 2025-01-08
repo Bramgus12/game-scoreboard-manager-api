@@ -10,6 +10,7 @@ import mikroOrmConfig from "./mikro-orm.config";
 import { KlaverjasTeamModule } from "./klaverjasTeam/klaverjas-team.module";
 import { KlaverjasRoundModule } from "./klaverjasRound/klaverjas-round.module";
 import { BoerenbridgeGameModule } from "./boerenbridgeGame/boerenbridge-game.module";
+import { BoerenbridgePlayerModule } from "./boerenbridgePlayer/boerenbridge-player.module";
 
 @Module({
     imports: [
@@ -23,6 +24,7 @@ import { BoerenbridgeGameModule } from "./boerenbridgeGame/boerenbridge-game.mod
         KlaverjasRoundModule,
         UserModule,
         BoerenbridgeGameModule,
+        BoerenbridgePlayerModule,
     ],
     controllers: [AppController],
     providers: [AppService, AuthService],

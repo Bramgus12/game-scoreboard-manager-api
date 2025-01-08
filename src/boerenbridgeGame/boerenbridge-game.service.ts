@@ -62,17 +62,18 @@ export class BoerenbridgeGameService {
             user: userId,
         });
 
-        const updatedKlaverjasRound = await this.em.findOneOrFail<BoerenbridgeGame>(
-            "BoerenbridgeGame",
-            { id: boerenbridgeGameId, scoreboard: scoreboard.id },
-        );
+        const updatetBoerenbridgeGame =
+            await this.em.findOneOrFail<BoerenbridgeGame>("BoerenbridgeGame", {
+                id: boerenbridgeGameId,
+                scoreboard: scoreboard.id,
+            });
 
-        updatedKlaverjasRound.currentRound = boerenbridgeGame.currentRound;
-        updatedKlaverjasRound.pointsPerCorrectGuess =
+        updatetBoerenbridgeGame.currentRound = boerenbridgeGame.currentRound;
+        updatetBoerenbridgeGame.pointsPerCorrectGuess =
             boerenbridgeGame.pointsPerCorrectGuess;
 
-        void this.em.persistAndFlush(updatedKlaverjasRound);
+        void this.em.persistAndFlush(updatetBoerenbridgeGame);
 
-        return updatedKlaverjasRound;
+        return updatetBoerenbridgeGame;
     }
 }
