@@ -1,10 +1,4 @@
-import {
-    Collection,
-    Entity,
-    ManyToMany,
-    ManyToOne,
-    Property,
-} from "@mikro-orm/core";
+import { Collection, Entity, ManyToOne, OneToMany, Property } from "@mikro-orm/core";
 import { BaseEntity } from "./base.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { BoerenbridgeGame } from "./boerenbridge-game.entity";
@@ -20,7 +14,7 @@ export class BoerenbridgePlayer extends BaseEntity {
     @ApiProperty({ type: "string", format: "uuid" })
     game: BoerenbridgeGame;
 
-    @ManyToMany({ entity: () => BoerenbridgeRound })
+    @OneToMany({ entity: () => BoerenbridgeRound, mappedBy: "player" })
     @ApiProperty({ type: () => [BoerenbridgeRound] })
     rounds = new Collection<BoerenbridgeRound>(this);
 }
